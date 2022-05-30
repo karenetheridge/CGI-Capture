@@ -460,7 +460,7 @@ sub apply {
 	$self->_check( TAINT              => ${^TAINT}                 );
 	$self->_check( PERL_VERSION       => $]                        );
 	$self->_check( CONFIG_PATH        => $INC{'Config.pm'}         );
-	$self->_check( PERL_PATH          => $Config::config{perlpath} );
+	$self->_check( PERL_PATH          => $Config::Config{perlpath} );
 
 	1;
 }

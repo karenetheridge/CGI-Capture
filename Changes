@@ -2,6 +2,7 @@ Revision history for Perl extension CGI-Capture
 
 {{$NEXT}}
         - tooling updates
+        - fix bad use of %config variable (RT#142935)
 
 1.14      2010-02-06
 	- Updating to Module::Install::DSL 0.92
