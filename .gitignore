@@ -1,0 +1,6 @@
+/.ackrc
+/.build/
+!/.gitignore
+/.latest
+/CGI-Capture-*/
+/CGI-Capture-*.tar.gz

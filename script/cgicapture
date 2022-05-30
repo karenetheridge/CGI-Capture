@@ -1,11 +1,13 @@
 #!/usr/bin/perl
+# PODNAME: cgicapture
+# ABSTRACT:Capture the CGI environment
 
 use 5.006;
 use strict;
 use warnings;
 use CGI::Capture ();
 
-our $VERSION = '1.14';
+our $VERSION = '1.15';
 
 # Capture the CGI environment
 my $cgi = CGI::Capture->capture;
