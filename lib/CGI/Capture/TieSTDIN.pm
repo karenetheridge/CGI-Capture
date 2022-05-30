@@ -5,10 +5,8 @@ package CGI::Capture::TieSTDIN;
 use 5.006;
 use strict;
 use warnings;
-use vars qw{$VERSION};
-BEGIN {
-	$VERSION = '1.14';
-}
+
+our $VERSION = '1.14';
 
 sub TIEHANDLE {
 	my $class  = shift;

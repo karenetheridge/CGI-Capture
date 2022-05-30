@@ -106,14 +106,11 @@ use IO::Scalar  2.110 ();
 use YAML::Tiny   1.36 ();
 use Params::Util 0.37 qw{ _SCALAR0 _HASH0 _CODE _INSTANCE };
 
-use vars qw{$VERSION $DEPARSE};
-BEGIN {
-	$VERSION = '1.14';
-}
+our $VERSION = '1.14';
 
 use CGI::Capture::TieSTDIN ();
 
-
+our $DEPARSE;
 
 
 
