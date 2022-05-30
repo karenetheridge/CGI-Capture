@@ -103,7 +103,7 @@ use IO::Scalar  2.110 ();
 use YAML::Tiny   1.36 ();
 use Params::Util 0.37 qw{ _SCALAR0 _HASH0 _CODE _INSTANCE };
 
-our $VERSION = '1.15';
+our $VERSION = '1.16';
 
 use CGI::Capture::TieSTDIN ();
 

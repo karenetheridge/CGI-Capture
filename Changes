@@ -1,5 +1,7 @@
 Revision history for Perl extension CGI-Capture
 
+{{$NEXT}}
+
 1.15      2022-05-30 21:17:23Z
         - tooling updates
         - fix bad use of %config variable (RT#142935)
