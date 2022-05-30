@@ -35,7 +35,7 @@ cgicapture - Capture the CGI environment
 L<CGI::Capture> is a module used to capture and replay a full CGI
 environment (primarily for debugging purposes).
 
-B<cgicapture> is a script you can copy into your cgi-bin directory
+B<cgicapture> is a script you can copy into your F<cgi-bin> directory
 that will capture the CGI environment and return it as a text/plain
 document containing the L<CGI::Capture> object, serialized as a YAML
 document.

@@ -60,7 +60,7 @@ replace the current CGI call with the stored one.
 =head2 Security
 
 The actual captured CGI files are Storable CGI::Capture objects. If you
-want to use CGI::Capture in an environment where you have CODE refereneces
+want to use CGI::Capture in an environment where you have CODE references
 in your @INC path (such as with PAR files), you will need to disable
 security for Storable by setting $CGI::Capture::DEPARSE to true, which will
 enable B::Deparse and Eval support for stored objects.
@@ -70,7 +70,7 @@ enable B::Deparse and Eval support for stored objects.
 In its default usage, B<CGI::Capture> takes an all or nothing approach,
 requiring you to capture absolutely every element of a CGI call.
 
-Sometimes you want to be a little more targetted, and for these situations
+Sometimes you want to be a little more targeted, and for these situations
 an alternative methodology is provided.
 
 The C<as_yaml> and C<from_yaml> methods allow you to store and retrieve a
@@ -243,7 +243,7 @@ environment, the C<from_yaml> method can be used to restore a
 B<CGI::Capture> object from a L<YAML::Tiny> object.
 
 Returns a new B<CGI::Capture> object, or croaks if passed an
-invalid param.
+invalid parameter.
 
 =cut
 
@@ -402,7 +402,7 @@ These include the real and effective user and group, the OS name, the perl
 version, and whether Tainting is on or off.
 
 The effect is to really make sure you are replaying the call in your console
-debugger exactly as it was from the browser, and you arn't accidentally using
+debugger exactly as it was from the browser, and you aren't accidentally using
 a different user, a different perl, or are making some other overlooked and
 hard to debug mistake.
 
