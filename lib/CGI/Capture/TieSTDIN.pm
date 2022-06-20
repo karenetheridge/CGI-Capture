@@ -10,21 +10,22 @@ our $VERSION = '1.16';
 
 sub TIEHANDLE {
 	my $class  = shift;
-	my $string_ref = shift;
+	my $string = shift;
 	return bless {
-		string_ref => $string_ref,
+		string => $string,
 	};
 }
 
 sub READ {
 	my $self   = shift;
-	if ( !defined($self->{string_ref}) || ${$self->{string_ref}} eq '' ) {
+	my $string = $self->{string};
+	if ( !defined($string) || $$string eq '' ) {
 		$_[0] = undef;
 		return 0;
 	}
-	my ($string, $length, $offset) = @_;
+	my (undef, $length, $offset) = @_;
 	$offset = 0		if (!defined($offset));
-	my $buffer = substr(${$self->{string_ref}}, $offset, $length, '');
+	my $buffer = substr( $$string, $offset, $length, '' );
 	my $rv     = length $buffer;
 	$_[0]      = $buffer;
 	return $rv;
@@ -32,20 +33,20 @@ sub READ {
 
 sub READLINE {
 	my $self   = shift;
-	my $string_ref = $self->{string_ref};
-	if ( !defined($string_ref) || $$string_ref eq '' ) {
+	my $string = $self->{string};
+	if ( !defined($string) || $$string eq '' ) {
 		return undef;
 	}
 	if ( wantarray ) {
-		my @lines = split /(?<=\n)/, $$string_ref;
-		$$string_ref = '';
+		my @lines = split /(?<=\n)/, $$string;
+		$$string = '';
 		return @lines;
 	} else {
-		if ( $$string_ref =~ s/^(.+?\n)//s ) {
-			return $1;
+		if ( $$string =~ s/^(.+?\n)//s ) {
+			return "$1";
 		} else {
-			my $rv = $$string_ref;
-			$$string_ref = '';
+			my $rv = $$string;
+			$$string = '';
 			return $rv;
 		}
 	}
