@@ -18,14 +18,14 @@ sub TIEHANDLE {
 
 sub READ {
 	my $self   = shift;
-	my $string = shift;
-	unless ( defined $string ) {
+	my $string = $self->{string};
+	if ( !defined($string) || !defined($$string) || $$string eq '' ) {
 		$_[0] = undef;
 		return 0;
 	}
-	my $offset = $_[2] || 0;
-	my $length = $_[1];
-	my $buffer = substr( $string, $offset, $length );
+	my (undef, $length, $offset) = @_;
+	$offset = 0		if (!defined($offset));
+	my $buffer = substr( $$string, $offset, $length, '' );
 	my $rv     = length $buffer;
 	$_[0]      = $buffer;
 	return $rv;
@@ -34,7 +34,7 @@ sub READ {
 sub READLINE {
 	my $self   = shift;
 	my $string = $self->{string};
-	unless ( defined $$string ) {
+	if ( !defined($string) || !defined($$string) || $$string eq '' ) {
 		return undef;
 	}
 	if ( wantarray ) {
@@ -42,7 +42,7 @@ sub READLINE {
 		$$string = undef;
 		return @lines;
 	} else {
-		if ( $$string =~ s/^(.+?\n)// ) {
+		if ( $$string =~ s/^(.+?\n)//s ) {
 			return "$1";
 		} else {
 			my $rv = $$string;
