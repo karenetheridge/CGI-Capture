@@ -19,7 +19,7 @@ sub TIEHANDLE {
 sub READ {
 	my $self   = shift;
 	my $string = $self->{string};
-	if ( !defined($string) || $$string eq '' ) {
+	if ( !defined($string) || !defined($$string) || $$string eq '' ) {
 		$_[0] = undef;
 		return 0;
 	}
@@ -34,19 +34,19 @@ sub READ {
 sub READLINE {
 	my $self   = shift;
 	my $string = $self->{string};
-	if ( !defined($string) || $$string eq '' ) {
+	if ( !defined($string) || !defined($$string) || $$string eq '' ) {
 		return undef;
 	}
 	if ( wantarray ) {
 		my @lines = split /(?<=\n)/, $$string;
-		$$string = '';
+		$$string = undef;
 		return @lines;
 	} else {
 		if ( $$string =~ s/^(.+?\n)//s ) {
 			return "$1";
 		} else {
 			my $rv = $$string;
-			$$string = '';
+			$$string = undef;
 			return $rv;
 		}
 	}
